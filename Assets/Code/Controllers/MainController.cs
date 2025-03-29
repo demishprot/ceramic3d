@@ -32,7 +32,7 @@ namespace Ceramic3D
 			public async void Initialize()
 			{
 				_primitiveFactory = new PrimitiveFactory();
-				_matrixService.OnSearch += VisualizeOffset;
+				_matrixService.OnMatch += VisualizeOffset;
 				_view.StartButton.onClick.AddListener(VisualizeMatrices);
 				await LoadMatrices();
 			}
@@ -72,7 +72,7 @@ namespace Ceramic3D
 			}
 			public void Dispose()
 			{
-				_matrixService.OnSearch -= VisualizeOffset;
+				_matrixService.OnMatch -= VisualizeOffset;
 				_view.StartButton.onClick.RemoveAllListeners();
 			}
 		}

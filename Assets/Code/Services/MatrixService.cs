@@ -27,8 +27,8 @@ namespace Ceramic3D
 			private const string SPACE_FILE_NAME = "space.json";
 			private const string OUT_FILE_NAME = "out.json";
 
-			private event Action<Vector3, Color> _onSearch;
-			public event Action<Vector3, Color> OnSearch { add => _onSearch += value; remove => _onSearch -= value; }
+			private event Action<Vector3, Color> _onMatch;
+			public event Action<Vector3, Color> OnMatch { add => _onMatch += value; remove => _onMatch -= value; }
 
 			private readonly ISetRepository<List<SerializableVector3>> _offsetRepository;
 			private readonly IGetRepository<List<Matrix4x4>> _matrixRepository;
@@ -98,7 +98,7 @@ namespace Ceramic3D
 								if (!matched.Contains(offset))
 								{
 									matched.Add(offset);
-									_onSearch(offset, Color.blue);
+									_onMatch(offset, Color.blue);
 								}
 								match = true;
 								break;
@@ -107,7 +107,7 @@ namespace Ceramic3D
 						if (!match)
 						{
 							unmatched.Add(modelPos);
-							_onSearch(modelPos, Color.white);
+							_onMatch(modelPos, Color.white);
 						}
 					}
 					return new BaseResponse<SearchModel>()
